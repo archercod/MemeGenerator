@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -21,6 +21,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
         imagePicker.delegate = self
+        topText.delegate = self
+        bottomText.delegate = self
         
         topText.text = "TOP"
         topText.textAlignment = .center
@@ -56,5 +58,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == topText {
+            topText.text = ""
+        } else if textField == bottomText {
+            bottomText.text = ""
+        }
+    }
 }
 
