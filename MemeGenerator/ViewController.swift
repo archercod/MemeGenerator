@@ -32,8 +32,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+    }
+    
+    @objc func keyboardWillShow(_ notification: NSNotification) {
+        self.view.frame.origin.y -= getKeyboardHeight(notification as Notification)
+    }
+    
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+        self.view.frame.origin.y += getKeyboardHeight(notification as Notification)
+    }
+    
+    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.cgRectValue.height
+    }
+    
+    func subscribeToKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+    }
+
     
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
         imagePicker.sourceType = .photoLibrary
@@ -64,6 +95,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } else if textField == bottomText {
             bottomText.text = ""
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == topText {
+            topText.resignFirstResponder()
+        } else if textField == bottomText {
+            bottomText.resignFirstResponder()
+        }
+        return true
     }
 }
 
