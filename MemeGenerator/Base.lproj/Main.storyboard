@@ -35,15 +35,19 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tzZ-zS-Qcr">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="saY-x5-djf"/>
-                                    <barButtonItem title="Pick" id="MqW-NB-dyN">
+                                    <barButtonItem image="icons8-Money-50" id="MqW-NB-dyN">
+                                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="xsh-BE-bh7"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Camera" id="n8I-7e-U90">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="LJl-oR-1Zq"/>
+                                    <barButtonItem image="icons8-Camera-50" id="n8I-7e-U90">
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="takeImage:" destination="BYZ-38-t0r" id="FMr-IR-9OI"/>
                                         </connections>
@@ -51,12 +55,24 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ysc-jS-fPP"/>
                                 </items>
                             </toolbar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIL-Vd-c6R">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="MemeGenerator" id="N0V-kg-BHo">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="AhV-tN-KEm"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="NLb-kl-Jp4"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="cIL-Vd-c6R" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="0vn-Sp-lb4"/>
                             <constraint firstItem="tzZ-zS-Qcr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="24J-dh-yXI"/>
+                            <constraint firstItem="cIL-Vd-c6R" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GEU-YM-mou"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BV3-6l-bcE" secondAttribute="trailing" constant="20" id="Gva-eD-jya"/>
                             <constraint firstItem="BV3-6l-bcE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="IT4-KH-Lyw"/>
+                            <constraint firstItem="cIL-Vd-c6R" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="SYb-pd-7HW"/>
                             <constraint firstItem="tzZ-zS-Qcr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kOt-L5-1dh"/>
                             <constraint firstItem="BV3-6l-bcE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="78" id="qub-Z3-WFa"/>
                             <constraint firstItem="tzZ-zS-Qcr" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="vLk-kH-IUD"/>
@@ -76,4 +92,8 @@
             <point key="canvasLocation" x="117.59999999999999" y="118.29085457271366"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-Camera-50" width="50" height="50"/>
+        <image name="icons8-Money-50" width="50" height="50"/>
+    </resources>
 </document>
